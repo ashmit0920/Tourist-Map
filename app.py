@@ -13,5 +13,19 @@ tourist_spots = {
 for spot, coords in tourist_spots.items():
     folium.Marker(coords, popup=spot, tooltip="Click here", icon=folium.Icon(color="green")).add_to(mymap)
 
+if 'bucket_list' not in st.session_state:
+    st.session_state.bucket_list = []
+
 st.title("Tourist Map of Paris")
-st_folium(mymap, width=700, height=500)
+st_folium(mymap, width=700)
+
+st.sidebar.header("Your Bucket List")
+
+spots = st.text_input("Enter a tourist spot here")
+add_spot = st.button("Add to Bucket list")
+
+if add_spot:
+    if spots:
+        st.session_state.bucket_list.append(spots)
+        for spot in st.session_state.bucket_list:
+            st.sidebar.write(spot.title()) # title() function to capitalize first letter of each word
