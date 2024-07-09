@@ -11,7 +11,7 @@ tourist_spots = {
 }
 
 for spot, coords in tourist_spots.items():
-    folium.Marker(coords, popup=spot).add_to(mymap)
+    folium.Marker(coords, popup=spot, tooltip="Click here", icon=folium.Icon(color="green")).add_to(mymap)
 
 st.title("Tourist Map of Paris")
 st_folium(mymap, width=700, height=500)
